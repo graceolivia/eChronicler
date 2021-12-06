@@ -51,5 +51,4 @@ jobs:
         HEROKU_APP_NAME: "e-chronicler"
       if: github.ref == 'refs/heads/main' && job.status == 'success'
       run: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/e-chronicler.git origin/main:master
-
       
