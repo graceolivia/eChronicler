@@ -49,6 +49,9 @@ jobs:
     needs: build
 
     steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - name: Deploy to Heroku
       env:
         HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_KEY }}
