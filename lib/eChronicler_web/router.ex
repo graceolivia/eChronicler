@@ -20,6 +20,7 @@ defmodule EChroniclerWeb.Router do
     get "/", PageController, :index
     get "/hello", HelloController, :index
     get "/hello/:messenger", HelloController, :show
+    get "/journal_entries", JournalEntryController, :index
   end
 
   # Other scopes may use custom stacks.
