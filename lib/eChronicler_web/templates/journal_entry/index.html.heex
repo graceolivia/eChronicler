@@ -1,1 +1,9 @@
 <h1>Journal Entries Page</h1>
+
+<div>
+  <ul>
+    <%= for journal_entry <- @journal_entries do %>
+        <li> Title: <%= journal_entry.title %> // Author: <%= journal_entry.author %> // Entry: <%= journal_entry.entry %></li>
+    <% end %>
+  </ul>
+</div>
