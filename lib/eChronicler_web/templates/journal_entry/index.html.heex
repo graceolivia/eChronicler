@@ -1,9 +1,15 @@
 <h1>Journal Entries Page</h1>
 
 <div>
-  <ul>
+ 
     <%= for journal_entry <- @journal_entries do %>
-        <li> Title: <%= journal_entry.title %> // Author: <%= journal_entry.author %> // Entry: <%= journal_entry.entry %></li>
+    <div id="entry">
+      <h3>Title: <%= journal_entry.title %></h3>
+      Author: <%= journal_entry.author %> <br>
+      Published: <%= journal_entry |> EChronicler.EChronicler.JournalEntry.format_datetime() %> 
+      <br> entry: <%= journal_entry.entry %>
+      </div>
+      <hr>
     <% end %>
-  </ul>
+
 </div>

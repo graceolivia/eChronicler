@@ -1,4 +1,4 @@
-defmodule EChronicler.EChronicler.Journal_Entry do
+defmodule EChronicler.EChronicler.JournalEntry do
   use Ecto.Schema
   import Ecto.Changeset
  # module JournalEntry should not be Snake Cased - convention note
@@ -11,6 +11,17 @@ defmodule EChronicler.EChronicler.Journal_Entry do
     timestamps()
   end
 
+  def format_datetime(journal_entry) do
+    journal_entry.inserted_at
+    |> Timex.format("{h12}:{m}, {Mfull} {D}, {YYYY}")
+    |> case do
+      {:ok, formatted_date} -> formatted_date
+      {:error, _} -> "no date found"
+    end
+  end
+
+
+  # create error checker for correct datetime strings to avoid errors
   @doc false
   def changeset(journal_entry, attrs) do
     journal_entry
