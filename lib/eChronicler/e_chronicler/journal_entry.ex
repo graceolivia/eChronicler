@@ -26,7 +26,6 @@ defmodule EChronicler.EChronicler.JournalEntry do
   def changeset(journal_entry, attrs) do
     journal_entry
     |> cast(attrs, [:author, :title, :entry])
-    # |> validate_required([:author, :title, :entry, :publish_date])
     |> validate_required([:author, :title, :entry])
   end
 end
