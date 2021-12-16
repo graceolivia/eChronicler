@@ -7,7 +7,6 @@ defmodule EChronicler.EChronicler.JournalEntryTest  do
 
   test "format_datetime/1 returns formatted string if correct" do
     correct_datetime = %EChronicler.EChronicler.JournalEntry{title: "Awesome Blog Post", author: "Grace", entry: "Test.", inserted_at: ~U[2021-12-16 16:36:15.549610Z]}
-    IO.inspect(correct_datetime)
     assert JournalEntry.format_datetime(correct_datetime) == "4:36, December 16, 2021"
   end
 

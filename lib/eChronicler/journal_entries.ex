@@ -8,10 +8,4 @@ defmodule EChronicler.JournalEntries do
     Repo.all(JournalEntry)
   end
 
-  # def create_garden(attrs \\ %{}) do
-  #   %Garden{}
-  #   |> Garden.changeset(attrs)
-  #   |> Repo.insert()
-  # end
-
 end
