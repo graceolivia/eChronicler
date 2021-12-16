@@ -11,6 +11,33 @@ defmodule EChronicler.EChronicler.JournalEntry do
     timestamps()
   end
 
+  @spec format_datetime(
+          atom
+          | %{
+              :inserted_at =>
+                {{integer, pos_integer, pos_integer},
+                 {non_neg_integer, non_neg_integer, non_neg_integer}
+                 | {non_neg_integer, non_neg_integer, non_neg_integer,
+                    non_neg_integer | {any, any}}}
+                | {integer, pos_integer, pos_integer}
+                | %{
+                    :__struct__ => Date | DateTime | NaiveDateTime | Time,
+                    :calendar => atom,
+                    optional(:day) => pos_integer,
+                    optional(:hour) => non_neg_integer,
+                    optional(:microsecond) => {non_neg_integer, non_neg_integer},
+                    optional(:minute) => non_neg_integer,
+                    optional(:month) => pos_integer,
+                    optional(:second) => non_neg_integer,
+                    optional(:std_offset) => integer,
+                    optional(:time_zone) => binary,
+                    optional(:utc_offset) => integer,
+                    optional(:year) => integer,
+                    optional(:zone_abbr) => binary
+                  },
+              optional(any) => any
+            }
+        ) :: binary
   def format_datetime(journal_entry) do
     journal_entry.inserted_at
     |> Timex.format("{h12}:{m}, {Mfull} {D}, {YYYY}")
