@@ -35,7 +35,6 @@ defmodule EChronicler.MixProject do
     [
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:timex, "~> 3.0"},
-      {:tzdata, "~> 1.1"},
       {:phoenix, "~> 1.6.2"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.6"},
