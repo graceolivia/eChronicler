@@ -2,8 +2,8 @@ defmodule EChronicler.EChronicler.JournalEntry  do
   use EChronicler.DataCase, async: true
   import Ecto.Query, warn: false
 
-  alias EChronicler.JournalEntries
-  alias EChronicler.JournalEntries.JournalEntry
+  alias EChronicler.EChronicler.JournalEntries
+  alias EChronicler.EChronicler.JournalEntries.JournalEntry
 
   test "format_datetime/1 returns formatted string if correct" do
     {:ok, correct_datetime} = %EChronicler.EChronicler.JournalEntry{title: "Awesome Blog Post", author: "Grace", entry: "Test.", inserted_at: "2021-12-14 21:51:06"}
