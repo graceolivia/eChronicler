@@ -18,8 +18,6 @@ defmodule EChroniclerWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    get "/hello", HelloController, :index
-    get "/hello/:messenger", HelloController, :show
     get "/journal_entries", JournalEntryController, :index
   end
 
