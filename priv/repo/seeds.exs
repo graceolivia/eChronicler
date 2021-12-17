@@ -9,3 +9,6 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+EChronicler.Repo.insert!(%EChronicler.EChronicler.JournalEntry{title: "Awesome Blog Post", author: "Grace", entry: "Time is an illustion, teatime doubly so."})
+EChronicler.Repo.insert!(%EChronicler.EChronicler.JournalEntry{title: "Cool Blog Post", author: "Grace", entry: "Test."})
+EChronicler.Repo.insert!(%EChronicler.EChronicler.JournalEntry{title: "So-So Blog Post", author: "Grace", entry: "Don't panic."})
