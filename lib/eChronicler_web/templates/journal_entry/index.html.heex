@@ -6,8 +6,8 @@
     <div id="entry">
       <h3>Title: <%= journal_entry.title %></h3>
       Author: <%= journal_entry.author %> <br>
-      Published: <%= journal_entry |> EChronicler.EChronicler.JournalEntry.format_datetime() %> 
-      <br> entry: <%= journal_entry.entry %>
+      Published: <%= journal_entry |> EChronicler.EChronicler.JournalEntry.format_datetime() %> <br>
+      Entry: <%= journal_entry.entry %>
       </div>
       <hr>
     <% end %>

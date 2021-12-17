@@ -1,4 +1,4 @@
-defmodule EChroniclerWeb.PageControllerTest do
+defmodule EChroniclerWeb.JournalEntryControllerTest do
   use EChroniclerWeb.ConnCase
 
   test "GET /", %{conn: conn} do

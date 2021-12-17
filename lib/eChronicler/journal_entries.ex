@@ -8,4 +8,10 @@ defmodule EChronicler.JournalEntries do
     Repo.all(JournalEntry)
   end
 
+  def create_journal_entry(attrs \\ %{}) do
+    %JournalEntry{}
+    |> JournalEntry.changeset(attrs)
+    |> Repo.insert()
+  end
+
 end
