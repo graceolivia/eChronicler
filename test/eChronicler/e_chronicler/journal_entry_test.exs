@@ -14,4 +14,6 @@ defmodule EChronicler.EChronicler.JournalEntryTest  do
     assert JournalEntry.format_datetime(incorrect_datetime)  == "no date found"
   end
 
+
+
 end
