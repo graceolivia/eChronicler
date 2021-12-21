@@ -7,7 +7,7 @@
         <h3>Title: <%= journal_entry.title %></h3>
         Author: <%= journal_entry.author %> <br>
         Published: <%= journal_entry |> EChronicler.EChronicler.JournalEntry.format_datetime() %> <br>
-        Entry: <%= journal_entry.entry %>
+        Entry: <%= journal_entry.entry |> EChronicler.JournalEntries.truncate_journal_entry() %>
       </div>
       <hr>
     <% end %>

@@ -5,7 +5,7 @@ defmodule EChronicler.EChronicler.JournalEntry do
     field :author, :string
     field :entry, :string
     field :title, :string
-    timestamps()
+    timestamps([type: :utc_datetime_usec])
   end
 
   def format_datetime(journal_entry) do

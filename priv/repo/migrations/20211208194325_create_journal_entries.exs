@@ -7,7 +7,7 @@ defmodule EChronicler.Repo.Migrations.CreateJournalEntries do
       add :title, :string
       add :entry, :string
 
-      timestamps()
+      timestamps([type: :utc_datetime_usec])
     end
   end
 end

@@ -11,11 +11,16 @@ defmodule EChronicler.JournalEntriesTest do
   end
 
   test "reverse_chron_list_journal_entries/0 lists journal entries in reverse chronological order" do
-    {:ok, journal_entry_earliest} = JournalEntries.create_journal_entry(%{author: "Tiny", title: "Published Earliest", entry: "Test.", inserted_at: ~U[1990-12-16 16:36:15.549610Z]})
-    {:ok, journal_entry_earlier} = JournalEntries.create_journal_entry(%{author: "Tino", title: "Published Earlier", entry: "Test.", inserted_at: ~U[2020-12-16 16:36:15.549610Z]})
-    {:ok, journal_entry_latest} = JournalEntries.create_journal_entry(%{author: "Tina", title: "Published Latest", entry: "Test.", inserted_at: ~U[2021-12-16 16:36:15.549610Z]})
-    assert JournalEntries.reverse_chron_list_journal_entries() == [journal_entry_latest, journal_entry_earlier, journal_entry_earliest]
+    {:ok, journal_entry_1} = JournalEntries.create_journal_entry(%{author: "Tiny", title: "1", entry: "1"})
+    {:ok, journal_entry_2} = JournalEntries.create_journal_entry(%{author: "Tiny", title: "2", entry: "2"})
+    {:ok, journal_entry_3} = JournalEntries.create_journal_entry(%{author: "Tino", title: "3", entry: "3"})
+    {:ok, journal_entry_4} = JournalEntries.create_journal_entry(%{author: "Tino", title: "4", entry: "4"})
+    {:ok, journal_entry_5} = JournalEntries.create_journal_entry(%{author: "Tina", title: "5", entry: "5"})
+    assert JournalEntries.reverse_chron_list_journal_entries() == [journal_entry_5, journal_entry_4, journal_entry_3, journal_entry_2, journal_entry_1]
   end
 
+  test "truncate_journal_entry/1 truncates entry" do
+    assert JournalEntries.truncate_journal_entry("Time is an illusion. Teatime doubly so. And time for tennis? Forget about it.") == "Time is an illusion. Teatime doubly so. And time fo..."
+  end
 
 end
