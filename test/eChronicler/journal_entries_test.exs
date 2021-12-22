@@ -23,4 +23,8 @@ defmodule EChronicler.JournalEntriesTest do
     assert JournalEntries.truncate_journal_entry("Time is an illusion. Teatime doubly so. And time for tennis? Forget about it.") == "Time is an illusion. Teatime doubly so. And time fo..."
   end
 
+  test "truncate_journal_entry/1 adds elipse after short entry" do
+    assert JournalEntries.truncate_journal_entry("Test") == "Test..."
+  end
+
 end
