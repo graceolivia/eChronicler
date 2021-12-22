@@ -28,6 +28,13 @@ select {
   width: auto;
 }
 
+#make-post{
+  color: black;
+  background: white;
+
+}
+
+
 #entry{
   background-color: aliceblue;
   padding: 10px;
