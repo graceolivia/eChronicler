@@ -1,0 +1,20 @@
+name: Reseed Database
+on: workflow_dispatch
+
+jobs:
+
+  database-reseed: 
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Empty and re-seed database
+      env:
+        HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_KEY }}
+        HEROKU_APP_NAME: "e-chronicler"
+      run: | 
+        HEROKU_API_KEY=$HEROKU_API_TOKEN heroku pg:reset DATABASE -a $HEROKU_APP_NAME --confirm $HEROKU_APP_NAME 
+        HEROKU_API_KEY=$HEROKU_API_TOKEN heroku run mix ecto.migrate -a $HEROKU_APP_NAME
+        HEROKU_API_KEY=$HEROKU_API_TOKEN heroku run mix run priv/repo/seeds.exs -a $HEROKU_APP_NAME

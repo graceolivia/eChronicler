@@ -7,9 +7,9 @@ defmodule EChroniclerWeb.JournalEntryControllerTest do
   end
 
   test "All Journal Entries are Displayed at /", %{conn: conn} do
-    {:ok, _journal_entry_one} = EChronicler.JournalEntries.create_journal_entry(%{author: "Bob", title: "Hello", entry: "Test."})
-    {:ok, _journal_entry_two} = EChronicler.JournalEntries.create_journal_entry(%{author: "Betty", title: "Goodbye", entry: "Test."})
-    {:ok, _journal_entry_three} = EChronicler.JournalEntries.create_journal_entry(%{author: "Booboo", title: "Supercilious", entry: "Test."})
+    {:ok, _journal_entry_one} = EChronicler.EChronicler.JournalEntry.create_journal_entry(%{author: "Bob", title: "Hello", entry: "Test."})
+    {:ok, _journal_entry_two} = EChronicler.EChronicler.JournalEntry.create_journal_entry(%{author: "Betty", title: "Goodbye", entry: "Test."})
+    {:ok, _journal_entry_three} = EChronicler.EChronicler.JournalEntry.create_journal_entry(%{author: "Booboo", title: "Supercilious", entry: "Test."})
 
     conn = get(conn, "/")
     assert html_response(conn, 200) =~ "Hello"

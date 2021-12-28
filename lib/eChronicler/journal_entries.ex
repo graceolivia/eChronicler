@@ -6,12 +6,8 @@ defmodule EChronicler.JournalEntries do
 
   def list_journal_entries() do
     Repo.all(JournalEntry)
+    |> Enum.sort(&(&1.inserted_at > &2.inserted_at))
   end
 
-  def create_journal_entry(attrs \\ %{}) do
-    %JournalEntry{}
-    |> JournalEntry.changeset(attrs)
-    |> Repo.insert()
-  end
 
 end
