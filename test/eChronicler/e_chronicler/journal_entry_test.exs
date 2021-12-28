@@ -15,5 +15,17 @@ defmodule EChronicler.EChronicler.JournalEntryTest  do
   end
 
 
+  test "truncate_journal_entry/1 truncates entry and adds ellipsis" do
+    assert JournalEntry.truncate_journal_entry_text("Time is an illusion. Teatime doubly so. And time for tennis? Forget about it.") == "Time is an illusion. Teatime doubly so. And time fo..."
+  end
+
+  test "truncate_journal_entry/1 doesn't add ellipsis after short entry" do
+    assert JournalEntry.truncate_journal_entry_text("Test.") == "Test."
+  end
+
+  test "truncate_journal_entry/1 returns blank entry" do
+    assert JournalEntry.truncate_journal_entry_text("") == ""
+  end
+
 
 end
