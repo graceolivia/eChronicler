@@ -10,6 +10,7 @@ defmodule EChronicler.EChronicler.JournalEntry do
   end
 
   alias EChronicler.Repo
+  alias __MODULE__
   def format_datetime(journal_entry) do
     journal_entry.inserted_at
     |> Timex.format("{h12}:{m}, {Mfull} {D}, {YYYY}")
@@ -34,6 +35,11 @@ defmodule EChronicler.EChronicler.JournalEntry do
     entry
     |> String.slice(0..50)
     |> Kernel.<>("...")
+  end
+
+  def create_journal_entry(attrs \\ %{}) do
+    changeset(%JournalEntry{}, attrs)
+    |> Repo.insert()
   end
 
 
