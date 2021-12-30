@@ -1,4 +1,4 @@
-defmodule EChronicler.EChronicler.JournalEntry do
+defmodule EChronicler.Models.JournalEntry do
   use Ecto.Schema
   import Ecto.Changeset
   import Ecto.Query, warn: false
@@ -41,6 +41,5 @@ defmodule EChronicler.EChronicler.JournalEntry do
     changeset(%JournalEntry{}, attrs)
     |> Repo.insert()
   end
-
 
 end

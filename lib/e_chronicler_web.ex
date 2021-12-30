@@ -30,7 +30,7 @@ defmodule EChroniclerWeb do
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/eChronicler_web/templates",
+        root: "lib/e_chronicler_web/templates",
         namespace: EChroniclerWeb
 
       # Import convenience functions from controllers

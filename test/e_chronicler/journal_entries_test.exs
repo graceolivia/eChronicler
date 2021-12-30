@@ -3,11 +3,11 @@ defmodule EChronicler.JournalEntriesTest do
   import Ecto.Query, warn: false
 
   alias EChronicler.JournalEntries
-  alias EChronicler.EChronicler.JournalEntry
+  alias EChronicler.Models.JournalEntry
 
   test "list_journal_entries/0 returns all journal_entries" do
-    {:ok, journal_entry_one} = EChronicler.EChronicler.JournalEntry.create_journal_entry(%{author: "Bob", title: "Hello", entry: "Test."})
-    {:ok, journal_entry_two} = EChronicler.EChronicler.JournalEntry.create_journal_entry(%{author: "Betty", title: "Goodbye", entry: "Test."})
+    {:ok, journal_entry_one} = EChronicler.Models.JournalEntry.create_journal_entry(%{author: "Bob", title: "Hello", entry: "Test."})
+    {:ok, journal_entry_two} = EChronicler.Models.JournalEntry.create_journal_entry(%{author: "Betty", title: "Goodbye", entry: "Test."})
     assert JournalEntries.list_journal_entries() == [journal_entry_two, journal_entry_one]
   end
 
