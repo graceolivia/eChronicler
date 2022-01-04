@@ -4,7 +4,7 @@
  <a href="/post">New post</a>
     <%= for journal_entry <- @journal_entries do %>
       <div id="entry">
-        <a href=""> <h3>Title: <%= journal_entry.title %></h3></a>
+        <a href="/{journal_entry.id}"> <h3>Title: <%= journal_entry.title %></h3></a>
         Author: <%= journal_entry.author %> <br>
         Published: <%= journal_entry |> EChronicler.Models.JournalEntry.format_datetime() %> <br>
         Entry: <%= journal_entry.entry |> EChronicler.Models.JournalEntry.truncate_journal_entry_text() %>
