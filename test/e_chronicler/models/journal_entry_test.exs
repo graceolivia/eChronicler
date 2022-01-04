@@ -14,7 +14,6 @@ defmodule EChronicler.Models.JournalEntryTest  do
     assert JournalEntry.format_datetime(incorrect_datetime)  == "no date found"
   end
 
-
   test "truncate_journal_entry/1 truncates entry and adds ellipsis" do
     assert JournalEntry.truncate_journal_entry_text("Time is an illusion. Teatime doubly so. And time for tennis? Forget about it.") == "Time is an illusion. Teatime doubly so. And time fo..."
   end
@@ -27,5 +26,9 @@ defmodule EChronicler.Models.JournalEntryTest  do
     assert JournalEntry.truncate_journal_entry_text("") == ""
   end
 
+  test "get_journal_entry!/1 returns journal entry with corresponding id" do
+    {:ok, journal_entry} = JournalEntry.create_journal_entry(%{author: "Tiny", title: "1", entry: "1"})
+    assert JournalEntry.get_journal_entry!(journal_entry.id) == journal_entry
+  end
 
 end
