@@ -17,6 +17,10 @@ h5{font-size: 1.6rem; letter-spacing: 0; line-height: 1.4}
 h6{font-size: 1.4rem; letter-spacing: 0; line-height: 1.2}
 pre{padding: 1em;}
 
+body{
+  font-family: "Gill Sans", sans-serif;
+}
+
 .container{
   margin: 0 auto;
   max-width: 80.0rem;
@@ -32,6 +36,15 @@ select {
   background-color: aliceblue;
   padding: 10px;
   border: 2px solid darkblue;
+}
+
+#title{
+  text-align: center;
+  font-weight: bold;
+}
+
+hr{
+  border-top: 20px dotted aliceblue;
 }
 
 /* Headers */
@@ -80,4 +93,11 @@ header nav a {
     flex-basis: 527px;
     margin: 2rem 1rem;
   }
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 2rem;
+  }
+
 }
