@@ -17,5 +17,17 @@ defmodule EChroniclerWeb.JournalEntryControllerTest do
     assert html_response(conn, 200) =~ "Supercilious"
   end
 
+  test "Single Journal Entry Is Displayed At /:id", %{conn: conn} do
+    {:ok, journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(%{author: "Bob", title: "Hello", entry: "Test."})
+    {:ok, other_journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(%{author: "Betty", title: "Goodbye", entry: "Test."})
+    conn = get(conn, "/#{journal_entry.id}")
+    assert html_response(conn, 200) =~ journal_entry.title
+    refute html_response(conn, 200) =~ other_journal_entry.title
+  end
+
+  test "Return 404 if Entry Is Not Found at /:id", %{conn: conn} do
+    conn = get(conn, "/5")
+    assert html_response(conn, 404)
+  end
 
 end

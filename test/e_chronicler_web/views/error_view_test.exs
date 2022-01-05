@@ -5,7 +5,7 @@ defmodule EChroniclerWeb.ErrorViewTest do
   import Phoenix.View
 
   test "renders 404.html" do
-    assert render_to_string(EChroniclerWeb.ErrorView, "404.html", []) == "Not Found"
+    assert render_to_string(EChroniclerWeb.ErrorView, "404.html", []) =~ "The page you are looking for could not be found. Sorry!"
   end
 
   test "renders 500.html" do
