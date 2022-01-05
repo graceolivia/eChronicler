@@ -12,8 +12,10 @@ defmodule EChroniclerWeb.JournalEntryController do
   def show(conn, %{"id" => id}) do
     case JournalEntry.get_journal_entry(id) do
       nil ->
-        put_view(conn, EChroniclerWeb.ErrorView)
-        |> render("404.html")
+        conn
+        |> put_status(:not_found)
+        |> put_view(EChroniclerWeb.ErrorView)
+        |> render(:"404")
       entry -> render(conn, "show.html", entry: entry)
     end
   end

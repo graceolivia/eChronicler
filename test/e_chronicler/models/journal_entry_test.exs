@@ -26,9 +26,13 @@ defmodule EChronicler.Models.JournalEntryTest  do
     assert JournalEntry.truncate_journal_entry_text("") == ""
   end
 
-  test "get_journal_entry!/1 returns journal entry with corresponding id" do
+  test "get_journal_entry/1 returns journal entry with corresponding id" do
     {:ok, journal_entry} = JournalEntry.create_journal_entry(%{author: "Tiny", title: "1", entry: "1"})
-    assert JournalEntry.get_journal_entry!(journal_entry.id) == journal_entry
+    assert JournalEntry.get_journal_entry(journal_entry.id) == journal_entry
+  end
+
+  test "get_journal_entry/1 with id that doesn't work returns nil" do
+    assert JournalEntry.get_journal_entry(6) == nil
   end
 
 end
