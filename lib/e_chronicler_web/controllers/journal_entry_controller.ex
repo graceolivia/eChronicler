@@ -10,7 +10,7 @@ defmodule EChroniclerWeb.JournalEntryController do
   end
 
   def show(conn, %{"id" => id}) do
-    entry = JournalEntry.get_journal_entry!(id)
+    entry = JournalEntry.get_journal_entry(id)
     render(conn, "show.html", entry: entry)
   end
 

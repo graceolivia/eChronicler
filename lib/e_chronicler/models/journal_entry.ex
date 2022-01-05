@@ -42,6 +42,12 @@ defmodule EChronicler.Models.JournalEntry do
     |> Repo.insert()
   end
 
-  def get_journal_entry!(id), do: Repo.get!(JournalEntry, id)
+  def get_journal_entry(id) do
+    Repo.get(JournalEntry, id)
+    |> case do
+      nil -> "no entry found"
+      %JournalEntry{} -> %JournalEntry{}
+    end
+  end
 
 end

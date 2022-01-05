@@ -21,8 +21,8 @@ defmodule EChroniclerWeb.JournalEntryControllerTest do
     {:ok, journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(%{author: "Bob", title: "Hello", entry: "Test."})
     {:ok, _journal_entry_irrelevant} = EChronicler.Models.JournalEntry.create_journal_entry(%{author: "Betty", title: "Goodbye", entry: "Test."})
     conn = get(conn, "/#{journal_entry.id}")
-    assert html_response(conn, 200) =~ "Hello"
-    assert !String.contains?(html_response(conn, 200), "Goodbye")
+    assert html_response(conn, 200) =~ journal_entry.title
+    refute html_response(conn, 200) =~ other_journal_entry.title
   end
 
 end
