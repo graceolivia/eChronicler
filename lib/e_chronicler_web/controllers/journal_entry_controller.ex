@@ -10,9 +10,12 @@ defmodule EChroniclerWeb.JournalEntryController do
   end
 
   def show(conn, %{"id" => id}) do
-    entry = JournalEntry.get_journal_entry(id)
-    render(conn, "show.html", entry: entry)
+    case JournalEntry.get_journal_entry(id) do
+      nil ->
+        put_view(conn, EChroniclerWeb.ErrorView)
+        |> render("404.html")
+      entry -> render(conn, "show.html", entry: entry)
+    end
   end
-
 
 end
