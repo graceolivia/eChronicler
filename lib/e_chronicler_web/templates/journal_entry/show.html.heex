@@ -1,12 +1,12 @@
-
-
-<div>
-      <div id="entry">
-        <h3>Title: <%= @entry.title %></h3>
+<main>
+      <article id="entry">
+        <h3 id="title"> <%= @entry.title %></h3>
+        <div id="metadata">
         Author: <%= @entry.author %> <br>
-        Published: <%= @entry |> EChronicler.Models.JournalEntry.format_datetime() %> <br>
-        Entry: <%= @entry.entry |> EChronicler.Models.JournalEntry.truncate_journal_entry_text() %>
-      </div>
-      <hr>
-
-</div>
+        Published: <%= @entry |> EChronicler.Models.JournalEntry.format_datetime() %> 
+        </div>
+        <hr id="title-body-divider">
+        <p id="entry-text"> <%= @entry.entry %> </p>
+      </article>
+      <hr id="dotted-post-divider">
+</main>
