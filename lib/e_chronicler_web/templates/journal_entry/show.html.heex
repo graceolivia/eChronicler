@@ -6,7 +6,7 @@
         Published: <%= @entry |> EChronicler.Models.JournalEntry.format_datetime() %> 
         </div>
         <hr id="title-body-divider">
-         <%= @entry.entry %>
+        <p id="entry-text"> <%= @entry.entry %> </p>
       </article>
       <hr id="dotted-post-divider">
 </main>
