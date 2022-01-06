@@ -4,8 +4,10 @@
     <%= for journal_entry <- @journal_entries do %>
       <article id="entry">
        <h3 id="title"> <%= link journal_entry.title, to: "/#{journal_entry.id}" %> </h3>
+       <div id="metadata">
         Author: <%= journal_entry.author %> <br>
         Published: <%= journal_entry |> EChronicler.Models.JournalEntry.format_datetime() %> 
+        </div>
         <hr id="title-body-divider">
          <%= journal_entry.entry |> EChronicler.Models.JournalEntry.truncate_journal_entry_text() %>
       </article>

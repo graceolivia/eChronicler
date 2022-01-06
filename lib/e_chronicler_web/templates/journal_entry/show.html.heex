@@ -1,8 +1,10 @@
 <main>
       <article id="entry">
         <h3 id="title"> <%= @entry.title %></h3>
+        <div id="metadata">
         Author: <%= @entry.author %> <br>
         Published: <%= @entry |> EChronicler.Models.JournalEntry.format_datetime() %> 
+        </div>
         <hr id="title-body-divider">
          <%= @entry.entry %>
       </article>
