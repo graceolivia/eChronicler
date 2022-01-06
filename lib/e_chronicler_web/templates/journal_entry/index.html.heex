@@ -1,14 +1,15 @@
-<h1>Journal Entries Page</h1>
+<h1 id="title">Journal Entries Page</h1>
 
 <div>
     <%= for journal_entry <- @journal_entries do %>
       <div id="entry">
-       <h3> <%= link journal_entry.title, to: "/#{journal_entry.id}" %> </h3>
+       <h3 id="title"> <%= link journal_entry.title, to: "/#{journal_entry.id}" %> </h3>
         Author: <%= journal_entry.author %> <br>
-        Published: <%= journal_entry |> EChronicler.Models.JournalEntry.format_datetime() %> <br>
-        Entry: <%= journal_entry.entry |> EChronicler.Models.JournalEntry.truncate_journal_entry_text() %>
+        Published: <%= journal_entry |> EChronicler.Models.JournalEntry.format_datetime() %> 
+        <hr id="subtle-hr">
+         <%= journal_entry.entry |> EChronicler.Models.JournalEntry.truncate_journal_entry_text() %>
       </div>
-      <hr>
+      <hr id="fancy-hr">
     <% end %>
 
 </div>
