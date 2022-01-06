@@ -12,4 +12,4 @@
 EChronicler.Repo.insert!(%EChronicler.Models.JournalEntry{title: "Awesome Blog Post", author: "Grace", entry: "Time is an illustion, teatime doubly so."})
 EChronicler.Repo.insert!(%EChronicler.Models.JournalEntry{title: "Cool Blog Post", author: "Grace", entry: "Test."})
 EChronicler.Repo.insert!(%EChronicler.Models.JournalEntry{title: "So-So Blog Post", author: "Grace", entry: "Don't panic."})
-EChronicler.Repo.insert!(%EChronicler.Models.JournalEntry{title: "Regular Blog Title", author: "Normal Name", entry: "Words."})
+EChronicler.Repo.insert!(%EChronicler.Models.JournalEntry{title: "Regular Blog Title", author: "Normal Name", entry: "Words words words. Words words words.Words words words.Words words words.Words words words.Words words words.Words words words. Words words words.Words words words.Words words words.Words words words.Words words words.Words words words.Words words words.Words words words.Words words words.Words words words.Words words words.Words words words.Words words words.Words words words.Words words words.Words words words."})

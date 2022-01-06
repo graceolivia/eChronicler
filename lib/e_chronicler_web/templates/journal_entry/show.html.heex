@@ -1,13 +1,10 @@
-
-
-<div>
-      <div id="entry">
+<main>
+      <article id="entry">
         <h3 id="title"> <%= @entry.title %></h3>
         Author: <%= @entry.author %> <br>
         Published: <%= @entry |> EChronicler.Models.JournalEntry.format_datetime() %> 
-        <hr id="subtle-hr">
+        <hr id="title-body-divider">
          <%= @entry.entry %>
-      </div>
-      <hr id="fancy-hr">
-
-</div>
+      </article>
+      <hr id="dotted-post-divider">
+</main>
