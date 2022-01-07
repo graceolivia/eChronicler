@@ -20,9 +20,22 @@ defmodule EChroniclerWeb.JournalEntryController do
     end
   end
 
-  def create(conn, _params) do
-    render(conn, "new.html")
+  def new(conn, _params) do
+    changeset = JournalEntries.change_journal_entry(%JournalEntry{})
+    render(conn, "new.html", changeset: changeset)
   end
 
+
+  def create(conn, %{"journal_entry" => journal_entry_params}) do
+    case JournalEntry.create_journal_entry(journal_entry_params) do
+      {:ok, journal_entry} ->
+        conn
+        |> put_flash(:info, "Journal entry created successfully.")
+        |> redirect(to: Routes.journal_entry_path(conn, :show, journal_entry))
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, "new.html", changeset: changeset)
+    end
+  end
 
 end

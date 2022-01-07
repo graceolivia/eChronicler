@@ -19,7 +19,9 @@ defmodule EChroniclerWeb.Router do
 
     get "/", JournalEntryController, :index
     get "/post/:id", JournalEntryController, :show
-    get "/new", JournalEntryController, :create
+    get "/new", JournalEntryController, :new
+    post "/", JournalEntryController, :create
+
   end
 
   # Other scopes may use custom stacks.

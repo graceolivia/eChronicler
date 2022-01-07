@@ -9,4 +9,8 @@ defmodule EChronicler.JournalEntries do
     |> Enum.sort(&(&1.inserted_at > &2.inserted_at))
   end
 
+  def change_journal_entry(%JournalEntry{} = journal_entry, attrs \\ %{}) do
+    JournalEntry.changeset(journal_entry, attrs)
+  end
+
 end

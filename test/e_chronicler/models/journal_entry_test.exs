@@ -35,4 +35,16 @@ defmodule EChronicler.Models.JournalEntryTest  do
     assert JournalEntry.get_journal_entry(6) == nil
   end
 
+
+  test "create_journal_entry/1 with valid data creates a journal_entry" do
+    valid_attrs = %{author: "some author", entry: "some entry", title: "some title"}
+
+    assert {:ok, %JournalEntry{} = journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(valid_attrs)
+    assert journal_entry.author == "some author"
+    assert journal_entry.entry == "some entry"
+    assert journal_entry.title == "some title"
+  end
+
+
+
 end

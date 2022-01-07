@@ -1,10 +1,4 @@
-<form action="/action_page.php">
-  <label for="title">Title:</label><br>
-  <input type="text" id="title"><br>
-  <label for="author">Author:</label><br>
-  <input type="text" id="name"><br><br>
-    <label for="entry">Entry:</label><br>
-    <textarea id="entry-text"></textarea>
-  <input type="submit" value="Submit">
-</form> 
+<h1>Write New Post</h1>
 
+
+<%= render "form.html", Map.put(assigns, :action, Routes.journal_entry_path(@conn, :create)) %>
