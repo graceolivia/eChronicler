@@ -93,25 +93,16 @@ a {
    body {
        font-size: 2rem;
   }
-   #metadata {
-       margin: 1rem;
-  }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 900px) {
    body {
        font-size: 1.7rem;
   }
-   #metadata {
-       margin: 1.5rem;
-  }
 }
 
 @media only screen and (min-width: 900px) {
    body {
        font-size: 1.5rem;
-  }
-   #metadata {
-       margin: 2rem;
   }
 }
