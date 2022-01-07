@@ -33,10 +33,12 @@ defmodule EChroniclerWeb.JournalEntryControllerTest do
   end
 
 
-  test "New journal entry renders form", %{conn: conn} do
+
+  test "renders form", %{conn: conn} do
     conn = get(conn, "/new")
     assert html_response(conn, 200) =~ "Write New Post"
   end
+
 
   test "Redirects to show journal entry when data is valid", %{conn: conn} do
     conn = post(conn, Routes.journal_entry_path(conn, :create), journal_entry: @valid_journal_entry)
@@ -47,5 +49,6 @@ defmodule EChroniclerWeb.JournalEntryControllerTest do
     conn = get(conn, Routes.journal_entry_path(conn, :show, id))
     assert html_response(conn, 200) =~ "Awesome Blog Post"
   end
+
 
 end
