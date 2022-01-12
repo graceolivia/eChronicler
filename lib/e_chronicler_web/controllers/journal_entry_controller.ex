@@ -23,8 +23,8 @@ defmodule EChroniclerWeb.JournalEntryController do
     end
   end
 
-  def new(conn, _params) do
-    changeset = JournalEntries.change_journal_entry(%JournalEntry{})
+  def new(conn, params) do
+    changeset = JournalEntry.changeset(%JournalEntry{}, params)
     render(conn, "new.html", changeset: changeset)
   end
 
