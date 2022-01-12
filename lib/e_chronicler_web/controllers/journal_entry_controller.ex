@@ -52,9 +52,9 @@ defmodule EChroniclerWeb.JournalEntryController do
   end
 
   def update(conn, %{"id" => id, "journal_entry" => journal_entry_params}) do
-    journal_entry = JournalEntries.get_journal_entry!(id)
+    journal_entry = JournalEntry.get_journal_entry(id)
 
-    case JournalEntries.update_journal_entry(journal_entry, journal_entry_params) do
+    case JournalEntry.update_journal_entry(journal_entry, journal_entry_params) do
       {:ok, journal_entry} ->
         conn
         |> put_flash(:info, "Journal entry updated successfully.")

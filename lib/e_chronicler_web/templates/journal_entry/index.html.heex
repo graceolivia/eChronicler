@@ -11,6 +11,9 @@
        <div id="metadata">
         Author: <%= journal_entry.author %> <br>
         Published: <%= journal_entry |> EChronicler.Models.JournalEntry.format_datetime() %> 
+        <%= if journal_entry.inserted_at != journal_entry.updated_at do %>
+       <br> Updated On: <%= journal_entry.inserted_at %> 
+        <% end %>
         </div>
         <hr id="title-body-divider">
          <p id="entry-text"><%= journal_entry.entry |> EChronicler.Models.JournalEntry.truncate_journal_entry_text() %></p>

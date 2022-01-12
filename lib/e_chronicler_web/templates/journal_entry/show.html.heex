@@ -5,8 +5,13 @@
         Author: <%= @entry.author %> <br>
         Published: <%= @entry |> EChronicler.Models.JournalEntry.format_datetime() %> 
         </div>
+        <%= if @entry.inserted_at != @entry.updated_at do %>
+        Updated On: <%= @entry.inserted_at %> 
+        <% end %>
         <hr id="title-body-divider">
         <p id="entry-text"> <%= @entry.entry %> </p>
       </article>
       <hr id="dotted-post-divider">
+
+      <%= link "Edit", to: Routes.journal_entry_path(@conn, :edit, @entry) %>
 </main>
