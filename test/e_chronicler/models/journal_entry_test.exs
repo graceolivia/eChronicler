@@ -45,6 +45,26 @@ defmodule EChronicler.Models.JournalEntryTest  do
     assert journal_entry.title == "some title"
   end
 
+  test "create_journal_entry/1 with no author throws an error" do
+    author_nil = %{author: nil, entry: "Entry", title: "Title"}
+
+    assert {:error, invalid_changeset} = EChronicler.Models.JournalEntry.create_journal_entry(author_nil)
+    refute invalid_changeset.valid?
+  end
+
+  test "create_journal_entry/1 with no entry throws an error" do
+    entry_nil = %{author: "Author", entry: nil, title: "Title"}
+
+    assert {:error, invalid_changeset} = EChronicler.Models.JournalEntry.create_journal_entry(entry_nil)
+    refute invalid_changeset.valid?
+  end
+
+  test "create_journal_entry/1 with no title throws an error" do
+    title_nil = %{author: "Author", entry: "Entry", title: nil}
+
+    assert {:error, invalid_changeset} = EChronicler.Models.JournalEntry.create_journal_entry(title_nil)
+    refute invalid_changeset.valid?
+  end
 
 
 end

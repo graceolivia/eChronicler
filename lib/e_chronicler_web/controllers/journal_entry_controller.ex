@@ -4,7 +4,9 @@ defmodule EChroniclerWeb.JournalEntryController do
   alias EChronicler.JournalEntries
   alias EChronicler.Models.JournalEntry
 
-  @empty_entry_field_error = "Empty entry field"
+  @empty_entry_field_error "Empty entry field"
+  def empty_entry_field_error, do: @empty_entry_field_error
+
   def index(conn, _params) do
     journal_entries = JournalEntries.list_journal_entries()
     render(conn, "index.html", journal_entries: journal_entries)
@@ -25,6 +27,7 @@ defmodule EChroniclerWeb.JournalEntryController do
     changeset = JournalEntries.change_journal_entry(%JournalEntry{})
     render(conn, "new.html", changeset: changeset)
   end
+
 
 
   def create(conn, %{"journal_entry" => journal_entry_params}) do

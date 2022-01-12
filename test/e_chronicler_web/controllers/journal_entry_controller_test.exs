@@ -1,5 +1,6 @@
 defmodule EChroniclerWeb.JournalEntryControllerTest do
   use EChroniclerWeb.ConnCase
+  alias EChroniclerWeb.JournalEntryController
 
   @valid_journal_entry %{title: "Awesome Blog Post", author: "Grace", entry: "Time is an illustion, teatime doubly so."}
   @invalid_journal_entry %{title: "", author: "", entry: ""}
