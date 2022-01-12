@@ -1,5 +1,9 @@
 <h1 id="title">Journal Entries Page</h1>
-<a href="journal_entry/new">New Post</a>
+
+<form method="GET" action="/journal_entry/new">
+<button type="submit">New Post</button>
+</form>
+
 <main>
     <%= for journal_entry <- @journal_entries do %>
       <article id="entry">
