@@ -45,4 +45,25 @@ defmodule EChroniclerWeb.JournalEntryController do
     end
   end
 
+  def edit(conn, %{"id" => id}) do
+    journal_entry = JournalEntry.get_journal_entry(id)
+    changeset = JournalEntry.change_journal_entry(journal_entry)
+    render(conn, "edit.html", journal_entry: journal_entry, changeset: changeset)
+  end
+
+  def update(conn, %{"id" => id, "journal_entry" => journal_entry_params}) do
+    journal_entry = JournalEntries.get_journal_entry!(id)
+
+    case JournalEntries.update_journal_entry(journal_entry, journal_entry_params) do
+      {:ok, journal_entry} ->
+        conn
+        |> put_flash(:info, "Journal entry updated successfully.")
+        |> redirect(to: Routes.journal_entry_path(conn, :show, journal_entry))
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, "edit.html", journal_entry: journal_entry, changeset: changeset)
+    end
+  end
+
+
 end

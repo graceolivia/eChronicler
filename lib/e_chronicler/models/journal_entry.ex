@@ -46,5 +46,9 @@ defmodule EChronicler.Models.JournalEntry do
     Repo.get(JournalEntry, id)
   end
 
+  def change_journal_entry(%JournalEntry{} = journal_entry, attrs \\ %{}) do
+    changeset(journal_entry, attrs)
+  end
+
 
 end

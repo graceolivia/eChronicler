@@ -21,6 +21,9 @@ defmodule EChroniclerWeb.Router do
     get "/journal_entry/new", JournalEntryController, :new
     get "/journal_entry/:id", JournalEntryController, :show
     post "/journal_entry", JournalEntryController, :create
+    get "/journal_entry/:id/edit", JournalEntryController, :edit
+    patch "/journal_entries/:id", JournalEntryController, :update
+    put "/journal_entries/:id", JournalEntryController, :update
 
   end
 
