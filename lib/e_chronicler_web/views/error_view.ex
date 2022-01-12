@@ -14,4 +14,8 @@ defmodule EChroniclerWeb.ErrorView do
   def render("500.html", _assigns) do
     "Internal Server Error"
   end
+
+  # def render("400.html", _assigns) do
+  #   "Bad Request"
+  # end
 end

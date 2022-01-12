@@ -2,6 +2,7 @@ defmodule EChroniclerWeb.JournalEntryControllerTest do
   use EChroniclerWeb.ConnCase
 
   @valid_journal_entry %{title: "Awesome Blog Post", author: "Grace", entry: "Time is an illustion, teatime doubly so."}
+  @invalid_journal_entry %{title: "", author: "", entry: ""}
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")
@@ -22,21 +23,19 @@ defmodule EChroniclerWeb.JournalEntryControllerTest do
   test "Single Journal Entry Is Displayed At /:id", %{conn: conn} do
     {:ok, journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(%{author: "Bob", title: "Hello", entry: "Test."})
     {:ok, other_journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(%{author: "Betty", title: "Goodbye", entry: "Test."})
-    conn = get(conn, "/post/#{journal_entry.id}")
+    conn = get(conn, "/journal_entry/#{journal_entry.id}")
     assert html_response(conn, 200) =~ journal_entry.title
     refute html_response(conn, 200) =~ other_journal_entry.title
   end
 
   test "Return 404 if Entry Is Not Found at /:id", %{conn: conn} do
-    conn = get(conn, "/post/5")
+    conn = get(conn, "/journal_entry/5")
     assert html_response(conn, 404)
   end
 
-
-
   test "renders form", %{conn: conn} do
-    conn = get(conn, "/new")
-    assert html_response(conn, 200) =~ "Write New Post"
+    conn = get(conn, "/journal_entry/new")
+    assert html_response(conn, 200) =~ "<form action=\"/journal_entry\" method=\"post\">"
   end
 
 
@@ -50,5 +49,9 @@ defmodule EChroniclerWeb.JournalEntryControllerTest do
     assert html_response(conn, 200) =~ "Awesome Blog Post"
   end
 
+  test "Redirects to 400 error page when journal entry when data is invalid", %{conn: conn} do
+    conn = post(conn, Routes.journal_entry_path(conn, :create), journal_entry: @invalid_journal_entry)
+    assert html_response(conn, 400) =~ JournalEntryController.empty_entry_field_error
+  end
 
 end

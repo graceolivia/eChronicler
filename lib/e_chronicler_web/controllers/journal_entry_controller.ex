@@ -4,6 +4,7 @@ defmodule EChroniclerWeb.JournalEntryController do
   alias EChronicler.JournalEntries
   alias EChronicler.Models.JournalEntry
 
+  @empty_entry_field_error = "Empty entry field"
   def index(conn, _params) do
     journal_entries = JournalEntries.list_journal_entries()
     render(conn, "index.html", journal_entries: journal_entries)
@@ -33,8 +34,11 @@ defmodule EChroniclerWeb.JournalEntryController do
         |> put_flash(:info, "Journal entry created successfully.")
         |> redirect(to: Routes.journal_entry_path(conn, :show, journal_entry))
 
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+      {:error, _changeset} ->
+        conn
+        |> put_status(:bad_request)
+        |> put_view(EChroniclerWeb.ErrorView)
+        |> render(:"400", reason: @empty_entry_field_error)
     end
   end
 
