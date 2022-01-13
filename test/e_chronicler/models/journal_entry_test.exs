@@ -4,8 +4,8 @@ defmodule EChronicler.Models.JournalEntryTest  do
 
   alias EChronicler.Models.JournalEntry
 
-  @valid_journal_entry %{title: "Awesome Blog Post", author: "Grace", entry: "Time is an illustion, teatime doubly so."}
-  @invalid_journal_entry %{title: "", author: "", entry: ""}
+  @valid_journal_attrs %{title: "Awesome Blog Post", author: "Grace", entry: "Time is an illustion, teatime doubly so."}
+  @invalid_journal_attrs %{title: "", author: "", entry: ""}
 
   test "format_datetime/1 returns formatted string if correct" do
     correct_datetime = ~U[2021-12-16 16:36:15.549610Z]
@@ -41,7 +41,7 @@ defmodule EChronicler.Models.JournalEntryTest  do
 
   test "create_journal_entry/1 with valid data creates a journal_entry" do
 
-    assert {:ok, %JournalEntry{} = journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_entry)
+    assert {:ok, %JournalEntry{} = journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_attrs)
     assert journal_entry.author ==  "Grace"
     assert journal_entry.entry == "Time is an illustion, teatime doubly so."
     assert journal_entry.title == "Awesome Blog Post"
@@ -69,7 +69,7 @@ defmodule EChronicler.Models.JournalEntryTest  do
   end
 
   test "update_journal_entry/2 with valid data updates the journal_entry" do
-    assert {:ok, %JournalEntry{} = journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_entry)
+    assert {:ok, %JournalEntry{} = journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_attrs)
     update_attrs = %{author: "some updated author", entry: "some updated entry", title: "some updated title"}
 
     assert {:ok, %JournalEntry{} = journal_entry} = JournalEntry.update_journal_entry(journal_entry, update_attrs)
@@ -79,8 +79,8 @@ defmodule EChronicler.Models.JournalEntryTest  do
   end
 
   test "update_journal_entry/2 with invalid data returns error changeset" do
-    assert {:ok, %JournalEntry{} = journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_entry)
-    assert {:error, %Ecto.Changeset{}} = JournalEntry.update_journal_entry(journal_entry,  @invalid_journal_entry)
+    assert {:ok, %JournalEntry{} = journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_attrs)
+    assert {:error, %Ecto.Changeset{}} = JournalEntry.update_journal_entry(journal_entry,  @invalid_journal_attrs)
     assert journal_entry == JournalEntry.get_journal_entry(journal_entry.id)
   end
 
