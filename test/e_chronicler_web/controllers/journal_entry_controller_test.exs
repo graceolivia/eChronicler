@@ -4,7 +4,7 @@ defmodule EChroniclerWeb.JournalEntryControllerTest do
 
   @valid_journal_entry %{title: "Awesome Blog Post", author: "Grace", entry: "Time is an illustion, teatime doubly so."}
   @invalid_journal_entry %{title: "", author: "", entry: ""}
-
+  @updated_journal_entry %{author: "some updated author", entry: "some updated entry", title: "some updated title"}
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")
     assert html_response(conn, 200) =~ "Journal Entries"
@@ -52,6 +52,29 @@ defmodule EChroniclerWeb.JournalEntryControllerTest do
 
   test "Redirects to 400 error page when journal entry when data is invalid", %{conn: conn} do
     conn = post(conn, Routes.journal_entry_path(conn, :create), journal_entry: @invalid_journal_entry)
+    assert html_response(conn, 400) =~ JournalEntryController.empty_entry_field_error
+  end
+
+
+
+  test "renders form for editing chosen journal_entry", %{conn: conn} do
+    {:ok, journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_entry)
+    conn = get(conn, Routes.journal_entry_path(conn, :edit, journal_entry))
+    assert html_response(conn, 200) =~ "Edit Journal Entry"
+  end
+
+  test "update redirects when data is valid", %{conn: conn} do
+    {:ok, journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_entry)
+    conn = put(conn, Routes.journal_entry_path(conn, :update, journal_entry), journal_entry: @updated_journal_entry)
+    assert redirected_to(conn) == Routes.journal_entry_path(conn, :show, journal_entry)
+
+    conn = get(conn, Routes.journal_entry_path(conn, :show, journal_entry))
+    assert html_response(conn, 200) =~ "some updated author"
+  end
+
+  test "update renders errors when data is invalid", %{conn: conn} do
+    {:ok, journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_entry)
+    conn = put(conn, Routes.journal_entry_path(conn, :update, journal_entry), journal_entry: @invalid_journal_entry)
     assert html_response(conn, 400) =~ JournalEntryController.empty_entry_field_error
   end
 

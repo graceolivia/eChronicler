@@ -60,8 +60,11 @@ defmodule EChroniclerWeb.JournalEntryController do
         |> put_flash(:info, "Journal entry updated successfully.")
         |> redirect(to: Routes.journal_entry_path(conn, :show, journal_entry))
 
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", journal_entry: journal_entry, changeset: changeset)
+        {:error, _changeset} ->
+          conn
+          |> put_status(:bad_request)
+          |> put_view(EChroniclerWeb.ErrorView)
+          |> render(:"400", reason: @empty_entry_field_error)
     end
   end
 
