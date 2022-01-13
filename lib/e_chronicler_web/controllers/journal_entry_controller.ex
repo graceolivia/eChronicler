@@ -46,7 +46,7 @@ defmodule EChroniclerWeb.JournalEntryController do
 
   def edit(conn, %{"id" => id}) do
     journal_entry = JournalEntry.get_journal_entry(id)
-    changeset = JournalEntry.changeset(journal_entry, %{title: journal_entry.title, author: journal_entry.author, entry: journal_entry.entry})
+    changeset = JournalEntry.changeset(journal_entry, %{})
     render(conn, "edit.html", journal_entry: journal_entry, changeset: changeset)
   end
 
