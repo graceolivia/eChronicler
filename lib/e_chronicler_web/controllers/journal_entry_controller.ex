@@ -65,5 +65,4 @@ defmodule EChroniclerWeb.JournalEntryController do
     end
   end
 
-
 end
