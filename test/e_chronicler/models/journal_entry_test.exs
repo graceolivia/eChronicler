@@ -68,12 +68,6 @@ defmodule EChronicler.Models.JournalEntryTest  do
     refute invalid_changeset.valid?
   end
 
-  test "change_journal_entry/1 returns a journal_entry changeset" do
-    assert {:ok, %JournalEntry{} = journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_entry)
-
-    assert %Ecto.Changeset{} = JournalEntry.change_journal_entry(journal_entry)
-  end
-
   test "update_journal_entry/2 with valid data updates the journal_entry" do
     assert {:ok, %JournalEntry{} = journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_entry)
     update_attrs = %{author: "some updated author", entry: "some updated entry", title: "some updated title"}
