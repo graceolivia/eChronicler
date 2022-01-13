@@ -80,8 +80,7 @@ defmodule EChronicler.Models.JournalEntryTest  do
 
   test "update_journal_entry/2 with invalid data returns error changeset" do
     assert {:ok, %JournalEntry{} = journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_attrs)
-    assert {:error, %Ecto.Changeset{}} = JournalEntry.update_journal_entry(journal_entry,  @invalid_journal_attrs)
-    assert journal_entry == JournalEntry.get_journal_entry(journal_entry.id)
+    assert {:error, %Ecto.Changeset{}} = JournalEntry.update_journal_entry(journal_entry, @invalid_journal_attrs)
   end
 
 end
