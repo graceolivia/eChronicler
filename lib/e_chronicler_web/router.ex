@@ -18,7 +18,10 @@ defmodule EChroniclerWeb.Router do
     pipe_through :browser
 
     get "/", JournalEntryController, :index
-    get "/:id", JournalEntryController, :show
+    get "/journal_entry/new", JournalEntryController, :new
+    get "/journal_entry/:id", JournalEntryController, :show
+    post "/journal_entry", JournalEntryController, :create
+
   end
 
   # Other scopes may use custom stacks.
