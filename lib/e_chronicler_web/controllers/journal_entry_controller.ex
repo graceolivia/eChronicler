@@ -34,7 +34,6 @@ defmodule EChroniclerWeb.JournalEntryController do
     case JournalEntry.create_journal_entry(journal_entry_params) do
       {:ok, journal_entry} ->
         conn
-        |> put_flash(:info, "Journal entry created successfully.")
         |> redirect(to: Routes.journal_entry_path(conn, :show, journal_entry))
 
       {:error, _changeset} ->
@@ -57,7 +56,6 @@ defmodule EChroniclerWeb.JournalEntryController do
     case JournalEntry.update_journal_entry(journal_entry, journal_entry_params) do
       {:ok, journal_entry} ->
         conn
-        |> put_flash(:info, "Journal entry updated successfully.")
         |> redirect(to: Routes.journal_entry_path(conn, :show, journal_entry))
 
         {:error, _changeset} ->
