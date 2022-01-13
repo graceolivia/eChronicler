@@ -72,6 +72,14 @@ defmodule EChroniclerWeb.JournalEntryControllerTest do
     assert html_response(conn, 200) =~ "some updated author"
   end
 
+  test "journal entry is updated successfully after update", %{conn: conn} do
+    {:ok, journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_entry)
+    conn = put(conn, Routes.journal_entry_path(conn, :update, journal_entry), journal_entry: @updated_journal_entry)
+
+    conn = get(conn, Routes.journal_entry_path(conn, :show, journal_entry))
+    assert html_response(conn, 200) =~ "some updated author"
+  end
+
   test "update renders errors when data is invalid", %{conn: conn} do
     {:ok, journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_entry)
     conn = put(conn, Routes.journal_entry_path(conn, :update, journal_entry), journal_entry: @invalid_journal_entry)
