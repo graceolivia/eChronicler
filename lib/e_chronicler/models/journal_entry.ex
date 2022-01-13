@@ -51,5 +51,8 @@ defmodule EChronicler.Models.JournalEntry do
     |> Repo.update()
   end
 
+  def delete_journal_entry(%JournalEntry{} = journal_entry) do
+    Repo.delete(journal_entry)
+  end
 
 end
