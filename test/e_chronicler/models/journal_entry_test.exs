@@ -4,6 +4,8 @@ defmodule EChronicler.Models.JournalEntryTest  do
 
   alias EChronicler.Models.JournalEntry
 
+  @valid_journal_entry %{title: "Awesome Blog Post", author: "Grace", entry: "Time is an illustion, teatime doubly so."}
+
   test "format_datetime/1 returns formatted string if correct" do
     correct_datetime = %JournalEntry{title: "Awesome Blog Post", author: "Grace", entry: "Test.", inserted_at: ~U[2021-12-16 16:36:15.549610Z]}
     assert JournalEntry.format_datetime(correct_datetime) == "4:36, December 16, 2021"
@@ -37,12 +39,11 @@ defmodule EChronicler.Models.JournalEntryTest  do
 
 
   test "create_journal_entry/1 with valid data creates a journal_entry" do
-    valid_attrs = %{author: "some author", entry: "some entry", title: "some title"}
 
-    assert {:ok, %JournalEntry{} = journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(valid_attrs)
-    assert journal_entry.author == "some author"
-    assert journal_entry.entry == "some entry"
-    assert journal_entry.title == "some title"
+    assert {:ok, %JournalEntry{} = journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_entry)
+    assert journal_entry.author ==  "Grace"
+    assert journal_entry.entry == "Time is an illustion, teatime doubly so."
+    assert journal_entry.title == "Awesome Blog Post"
   end
 
   test "create_journal_entry/1 with no author throws an error" do
@@ -66,5 +67,10 @@ defmodule EChronicler.Models.JournalEntryTest  do
     refute invalid_changeset.valid?
   end
 
+  test "change_journal_entry/1 returns a journal_entry changeset" do
+    assert {:ok, %JournalEntry{} = journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_entry)
+
+    assert %Ecto.Changeset{} = JournalEntry.change_journal_entry(journal_entry)
+  end
 
 end
