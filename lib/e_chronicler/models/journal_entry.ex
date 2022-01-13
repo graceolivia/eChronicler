@@ -11,9 +11,8 @@ defmodule EChronicler.Models.JournalEntry do
 
   alias EChronicler.Repo
   alias __MODULE__
-  def format_datetime(journal_entry) do
-    journal_entry.inserted_at
-    |> Timex.format("{h12}:{m}, {Mfull} {D}, {YYYY}")
+  def format_datetime(timestamp) do
+    Timex.format(timestamp, "{h12}:{m}, {Mfull} {D}, {YYYY}")
     |> case do
       {:ok, formatted_date} -> formatted_date
       {:error, _} -> "no date found"

@@ -3,10 +3,10 @@
         <h3 id="title"> <%= @entry.title %></h3>
         <div id="metadata">
         Author: <%= @entry.author %> <br>
-        Published: <%= @entry |> EChronicler.Models.JournalEntry.format_datetime() %> 
+        Published: <%= @entry.inserted_at |> EChronicler.Models.JournalEntry.format_datetime() %> 
         </div>
         <%= if @entry.inserted_at != @entry.updated_at do %>
-        Updated On: <%= @entry.inserted_at %> 
+        Updated On: <%= @entry.updated_at |> EChronicler.Models.JournalEntry.format_datetime() %> 
         <% end %>
         <hr id="title-body-divider">
         <p id="entry-text"> <%= @entry.entry %> </p>

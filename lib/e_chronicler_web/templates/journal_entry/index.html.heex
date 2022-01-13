@@ -10,9 +10,9 @@
        <h3 id="title"> <%= link journal_entry.title, to: "/journal_entry/#{journal_entry.id}" %> </h3>
        <div id="metadata">
         Author: <%= journal_entry.author %> <br>
-        Published: <%= journal_entry |> EChronicler.Models.JournalEntry.format_datetime() %> 
+        Published: <%= journal_entry.inserted_at |> EChronicler.Models.JournalEntry.format_datetime() %> 
         <%= if journal_entry.inserted_at != journal_entry.updated_at do %>
-       <br> Updated On: <%= journal_entry.inserted_at %> 
+       <br> Updated On: <%= journal_entry.updated_at |> EChronicler.Models.JournalEntry.format_datetime() %>
         <% end %>
         </div>
         <hr id="title-body-divider">
