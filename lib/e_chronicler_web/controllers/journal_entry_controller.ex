@@ -34,7 +34,6 @@ defmodule EChroniclerWeb.JournalEntryController do
     case JournalEntry.create_journal_entry(journal_entry_params) do
       {:ok, journal_entry} ->
         conn
-        |> put_flash(:info, "Journal entry created successfully.")
         |> redirect(to: Routes.journal_entry_path(conn, :show, journal_entry))
 
       {:error, _changeset} ->
@@ -42,6 +41,28 @@ defmodule EChroniclerWeb.JournalEntryController do
         |> put_status(:bad_request)
         |> put_view(EChroniclerWeb.ErrorView)
         |> render(:"400", reason: @empty_entry_field_error)
+    end
+  end
+
+  def edit(conn, %{"id" => id}) do
+    journal_entry = JournalEntry.get_journal_entry(id)
+    changeset = JournalEntry.changeset(journal_entry, %{})
+    render(conn, "edit.html", journal_entry: journal_entry, changeset: changeset)
+  end
+
+  def update(conn, %{"id" => id, "journal_entry" => journal_entry_params}) do
+    journal_entry = JournalEntry.get_journal_entry(id)
+
+    case JournalEntry.update_journal_entry(journal_entry, journal_entry_params) do
+      {:ok, journal_entry} ->
+        conn
+        |> redirect(to: Routes.journal_entry_path(conn, :show, journal_entry))
+
+        {:error, _changeset} ->
+          conn
+          |> put_status(:bad_request)
+          |> put_view(EChroniclerWeb.ErrorView)
+          |> render(:"400", reason: @empty_entry_field_error)
     end
   end
 

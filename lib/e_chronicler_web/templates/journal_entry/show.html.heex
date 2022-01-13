@@ -3,10 +3,17 @@
         <h3 id="title"> <%= @entry.title %></h3>
         <div id="metadata">
         Author: <%= @entry.author %> <br>
-        Published: <%= @entry |> EChronicler.Models.JournalEntry.format_datetime() %> 
+        Published: <%= @entry.inserted_at |> EChronicler.Models.JournalEntry.format_datetime() %> 
+        <%= if @entry.inserted_at != @entry.updated_at do %>
+          <br>Updated: <%= @entry.updated_at |> EChronicler.Models.JournalEntry.format_datetime() %> 
+        <% end %>
         </div>
         <hr id="title-body-divider">
         <p id="entry-text"> <%= @entry.entry %> </p>
       </article>
       <hr id="dotted-post-divider">
+
+    <button style="color: white;"><%= link "Edit", to: Routes.journal_entry_path(@conn, :edit, @entry ) %></button>
+    <br>
+    <button style="color: white;"><%= link "Home", to: Routes.journal_entry_path(@conn, :index) %></button>
 </main>

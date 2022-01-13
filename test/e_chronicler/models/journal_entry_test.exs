@@ -4,13 +4,16 @@ defmodule EChronicler.Models.JournalEntryTest  do
 
   alias EChronicler.Models.JournalEntry
 
+  @valid_journal_attrs %{title: "Awesome Blog Post", author: "Grace", entry: "Time is an illustion, teatime doubly so."}
+  @invalid_journal_attrs %{title: "", author: "", entry: ""}
+
   test "format_datetime/1 returns formatted string if correct" do
-    correct_datetime = %JournalEntry{title: "Awesome Blog Post", author: "Grace", entry: "Test.", inserted_at: ~U[2021-12-16 16:36:15.549610Z]}
+    correct_datetime = ~U[2021-12-16 16:36:15.549610Z]
     assert JournalEntry.format_datetime(correct_datetime) == "4:36, December 16, 2021"
   end
 
   test "format_datetime/1 returns error if incorrect" do
-    incorrect_datetime = %JournalEntry{title: "Awesome Blog Post", author: "Grace", entry: "Test.", inserted_at: ""}
+    incorrect_datetime = ""
     assert JournalEntry.format_datetime(incorrect_datetime)  == "no date found"
   end
 
@@ -37,12 +40,11 @@ defmodule EChronicler.Models.JournalEntryTest  do
 
 
   test "create_journal_entry/1 with valid data creates a journal_entry" do
-    valid_attrs = %{author: "some author", entry: "some entry", title: "some title"}
 
-    assert {:ok, %JournalEntry{} = journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(valid_attrs)
-    assert journal_entry.author == "some author"
-    assert journal_entry.entry == "some entry"
-    assert journal_entry.title == "some title"
+    assert {:ok, %JournalEntry{} = journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_attrs)
+    assert journal_entry.author ==  "Grace"
+    assert journal_entry.entry == "Time is an illustion, teatime doubly so."
+    assert journal_entry.title == "Awesome Blog Post"
   end
 
   test "create_journal_entry/1 with no author throws an error" do
@@ -66,5 +68,19 @@ defmodule EChronicler.Models.JournalEntryTest  do
     refute invalid_changeset.valid?
   end
 
+  test "update_journal_entry/2 with valid data updates the journal_entry" do
+    assert {:ok, %JournalEntry{} = journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_attrs)
+    update_attrs = %{author: "some updated author", entry: "some updated entry", title: "some updated title"}
+
+    assert {:ok, %JournalEntry{} = journal_entry} = JournalEntry.update_journal_entry(journal_entry, update_attrs)
+    assert journal_entry.author == "some updated author"
+    assert journal_entry.entry == "some updated entry"
+    assert journal_entry.title == "some updated title"
+  end
+
+  test "update_journal_entry/2 with invalid data returns error changeset" do
+    assert {:ok, %JournalEntry{} = journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_attrs)
+    assert {:error, %Ecto.Changeset{}} = JournalEntry.update_journal_entry(journal_entry, @invalid_journal_attrs)
+  end
 
 end
