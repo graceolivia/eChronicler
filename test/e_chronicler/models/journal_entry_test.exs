@@ -90,7 +90,7 @@ defmodule EChronicler.Models.JournalEntryTest  do
   end
 
   test "delete_journal_entry/1 with invalid id returns error" do
-    assert {:error, ArgumentError} = JournalEntry.delete_journal_entry(1000)
+    assert{:error, ArgumentError} == JournalEntry.delete_journal_entry(1000)
   end
 
 

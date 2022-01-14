@@ -54,7 +54,7 @@ defmodule EChronicler.Models.JournalEntry do
   def delete_journal_entry(id) do
     case get_journal_entry(id) do
     nil ->
-      raise ArgumentError
+      {:error, ArgumentError}
     %JournalEntry{} = journal_entry ->
       Repo.delete(journal_entry)
     end
