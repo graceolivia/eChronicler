@@ -14,7 +14,7 @@
       <hr id="dotted-post-divider">
 
     <button style="color: white;"><%= link "Edit", to: Routes.journal_entry_path(@conn, :edit, @entry ) %></button>
-    <button style="color: white;"><%= link "Delete", to: Routes.journal_entry_path(@conn, :delete, @entry ), method: :delete %></button>
+    <button style="color: white;" id="delete-button"><%= link "Delete", to: Routes.journal_entry_path(@conn, :delete, @entry ), method: :delete, data: [confirm: "Are you sure?"] %></button>
     <br>
-    <button style="color: white;"><%= link "Home", to: Routes.journal_entry_path(@conn, :index) %></button>
+    <button style="color: white;" ><%= link "Home", to: Routes.journal_entry_path(@conn, :index) %></button>
 </main>
