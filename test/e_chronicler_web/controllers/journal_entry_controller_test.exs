@@ -86,4 +86,13 @@ defmodule EChroniclerWeb.JournalEntryControllerTest do
     assert html_response(conn, 400) =~ JournalEntryController.empty_entry_field_error
   end
 
+  test "deletes chosen journal_entry", %{conn: conn} do
+    {:ok, journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_attrs)
+    conn = delete(conn, Routes.journal_entry_path(conn, :delete, journal_entry))
+    assert redirected_to(conn) == Routes.journal_entry_path(conn, :index)
+
+    conn = get(conn, "/journal_entry/#{journal_entry.id}")
+    assert html_response(conn, 404)
+  end
+
 end
