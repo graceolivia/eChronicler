@@ -95,4 +95,12 @@ defmodule EChroniclerWeb.JournalEntryControllerTest do
     assert html_response(conn, 404)
   end
 
+  test "message flashed upon delete", %{conn: conn} do
+    {:ok, journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_attrs)
+    conn = delete(conn, Routes.journal_entry_path(conn, :delete, journal_entry))
+    assert get_flash(conn, :info) == "Journal entry deleted successfully."
+  end
+
+
+
 end
