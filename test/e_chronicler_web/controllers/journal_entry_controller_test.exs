@@ -88,9 +88,18 @@ defmodule EChroniclerWeb.JournalEntryControllerTest do
 
   test "deletes chosen journal_entry", %{conn: conn} do
     {:ok, journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_attrs)
+
     conn = delete(conn, Routes.journal_entry_path(conn, :delete, journal_entry))
     assert redirected_to(conn) == Routes.journal_entry_path(conn, :index)
 
+    conn = get(conn, "/journal_entry/#{journal_entry.id}")
+    assert html_response(conn, 404)
+  end
+
+  test "404 error trying to access deleted entry", %{conn: conn} do
+    {:ok, journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_attrs)
+
+    conn = delete(conn, Routes.journal_entry_path(conn, :delete, journal_entry))
     conn = get(conn, "/journal_entry/#{journal_entry.id}")
     assert html_response(conn, 404)
   end

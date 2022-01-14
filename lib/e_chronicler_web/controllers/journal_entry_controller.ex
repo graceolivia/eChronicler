@@ -68,7 +68,7 @@ defmodule EChroniclerWeb.JournalEntryController do
 
   def delete(conn, %{"id" => id}) do
     journal_entry = JournalEntry.get_journal_entry(id)
-    {:ok, _journal_entry} = JournalEntry.delete_journal_entry(journal_entry)
+    {:ok, _journal_entry} = JournalEntry.delete_journal_entry(journal_entry.id)
 
     conn
     |> put_flash(:info, "Journal entry deleted successfully.")
