@@ -83,4 +83,15 @@ defmodule EChronicler.Models.JournalEntryTest  do
     assert {:error, %Ecto.Changeset{}} = JournalEntry.update_journal_entry(journal_entry, @invalid_journal_attrs)
   end
 
+  test "delete_journal_entry/1 with valid id deletes the journal_entry" do
+    assert {:ok, %JournalEntry{} = journal_entry} = EChronicler.Models.JournalEntry.create_journal_entry(@valid_journal_attrs)
+    assert {:ok, %JournalEntry{}} = JournalEntry.delete_journal_entry(journal_entry.id)
+    assert JournalEntry.get_journal_entry(journal_entry.id) == nil
+  end
+
+  test "delete_journal_entry/1 with invalid id returns error" do
+    assert{:error, ArgumentError} == JournalEntry.delete_journal_entry(1000)
+  end
+
+
 end

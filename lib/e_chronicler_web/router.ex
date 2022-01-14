@@ -23,6 +23,7 @@ defmodule EChroniclerWeb.Router do
     post "/journal_entry", JournalEntryController, :create
     get "/journal_entry/:id/edit", JournalEntryController, :edit
     put "/journal_entry/:id", JournalEntryController, :update
+    delete "/journal_entry/:id", JournalEntryController, :delete
 
   end
 
